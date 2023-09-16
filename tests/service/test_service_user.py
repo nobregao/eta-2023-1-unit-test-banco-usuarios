@@ -13,8 +13,25 @@ class TestServiceUser:
 
     def test_add_user_invalid_name(self):
         service = ServiceUser()
-        response_assert = "Usuário adicionado!"
+        response_assert = "Usuário não adicionado"
 
+        response = service.add_user(None, "development")
+
+        assert response_assert == response
+
+    def test_add_user_invalid_job(self):
+        service = ServiceUser()
+        response_assert = "Usuário não adicionado"
+
+        response = service.add_user("renatão", None)
+
+        assert response_assert == response
+
+    def test_add_user_just_exist(self):
+        service = ServiceUser()
+        response_assert = "Usuário já existe"
+
+        service.add_user("renatão", "development")
         response = service.add_user("renatão", "development")
 
         assert response_assert == response

@@ -12,7 +12,7 @@ class ServiceUser:
 
         ja_existe = len(self.search_user(name)) > 0
         if ja_existe:
-            return "Usuário não adicionado"
+            return "Usuário já existe"
 
         user = User(name, job)
         self.store.bd.append(user)
