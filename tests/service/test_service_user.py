@@ -99,3 +99,29 @@ class TestServiceUser:
 
         assert response_assert == response
 
+    def test_get_user_by_name(self):
+        service = ServiceUser()
+        name_user = "renatão"
+        response_assert = "development"
+
+        service.add_user(name_user, "development")
+        response = service.get_user_by_name(name_user)
+
+        assert response_assert == response
+
+    def test_get_user_by_name_invalid(self):
+        service = ServiceUser()
+        response_assert = "Nome inválido"
+
+        response = service.get_user_by_name(None)
+
+        assert response_assert == response
+
+    def test_get_user_by_name_user_doesnt_exist(self):
+        service = ServiceUser()
+        response_assert = "Não existe usuário com esse nome"
+
+        response = service.get_user_by_name("renatão")
+
+        assert response_assert == response
+
