@@ -10,8 +10,8 @@ class ServiceUser:
         if type(name) != str or type(job) != str:
             return "Usuário não adicionado"
 
-        ja_existe = len(self.search_user(name)) > 0
-        if ja_existe:
+        user = self.search_user(name)
+        if user != None:
             return "Usuário já existe"
 
         user = User(name, job)
@@ -20,17 +20,19 @@ class ServiceUser:
         return "Usuário adicionado!"
 
     def search_user(self, name):
-        return list(filter(lambda user: user.name == name, self.store.bd))
+        users = list(filter(lambda user: user.name == name, self.store.bd))
+        if len(users) > 0:
+            return users[0]
+        return None
 
     def remove_user(self, name):
         if type(name) != str:
             return "Nome inválido"
 
-        listUser = self.search_user(name)
-        if len(listUser) == 0:
+        user = self.search_user(name)
+        if user == None:
             return "Não existe usuário com esse nome"
 
-        user = listUser[0]
         self.store.bd.remove(user)
         return "Usuário removido!"
 
@@ -41,11 +43,10 @@ class ServiceUser:
         if type(job) != str:
             return "Job inválido"
 
-        listUser = self.search_user(name)
-        if len(listUser) == 0:
+        user = self.search_user(name)
+        if user == None:
             return "Não existe usuário com esse nome"
 
-        user = listUser[0]
         user.job = job
 
         return "Job de usuário atualizado"
@@ -54,9 +55,8 @@ class ServiceUser:
         if type(name) != str:
             return "Nome inválido"
 
-        listUser = self.search_user(name)
-        if len(listUser) == 0:
+        user = self.search_user(name)
+        if user == None:
             return "Não existe usuário com esse nome"
 
-        user = listUser[0]
         return user.job

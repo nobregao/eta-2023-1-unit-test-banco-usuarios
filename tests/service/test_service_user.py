@@ -1,3 +1,4 @@
+from src.models.user import User
 from src.service.service_user import ServiceUser
 
 
@@ -35,9 +36,6 @@ class TestServiceUser:
         response = service.add_user("renatão", "development")
 
         assert response_assert == response
-
-    def test_search_user(self):
-        pass
 
     def test_remove_user(self):
         service = ServiceUser()
@@ -125,3 +123,19 @@ class TestServiceUser:
 
         assert response_assert == response
 
+    def test_search_user(self):
+        service = ServiceUser()
+        response_assert = "renatão"
+
+        service.add_user("renatão", "development")
+        response_user = service.search_user("renatão")
+
+        assert response_assert == response_user.name
+
+    def test_search_user_doest_exist(self):
+        service = ServiceUser()
+        response_assert = None
+
+        response_user = service.search_user("renatão")
+
+        assert response_assert == response_user
