@@ -35,11 +35,22 @@ class ServiceUser:
         return "Usuário removido!"
 
     def update_user(self, name, job): #atualizando job
-        pass
+        if type(name) != str:
+            return "Nome inválido"
+
+        if type(job) != str:
+            return "Job inválido"
+
+        user = self.search_user(name)[0]
+        return user.job
 
     def get_user_by_name(self, name):
         if type(name) != str:
             return "Nome inválido"
 
-        user = self.search_user(name)[0]
+        listUser = self.search_user(name)
+        if len(listUser) == 0:
+            return "Não existe usuário com esse nome"
+
+        user = listUser[0]
         return user.job
