@@ -8,7 +8,7 @@ class TestServiceUser:
         service = ServiceUser()
         response_assert = "Usuário adicionado!"
 
-        response = service.add_user("renatão", "development")
+        response = service.add_user("camila", "qa")
 
         assert response_assert == response
 
@@ -24,7 +24,7 @@ class TestServiceUser:
         service = ServiceUser()
         response_assert = "Usuário não adicionado"
 
-        response = service.add_user("renatão", None)
+        response = service.add_user("ermeson", None)
 
         assert response_assert == response
 
@@ -32,14 +32,14 @@ class TestServiceUser:
         service = ServiceUser()
         response_assert = "Usuário já existe"
 
-        service.add_user("renatão", "development")
-        response = service.add_user("renatão", "development")
+        service.add_user("carina", "development")
+        response = service.add_user("carina", "development")
 
         assert response_assert == response
 
     def test_remove_user(self):
         service = ServiceUser()
-        name_user = "renatão"
+        name_user = "Camila"
         response_assert = "Usuário removido!"
 
         service.add_user(name_user, "development")
@@ -59,7 +59,7 @@ class TestServiceUser:
         service = ServiceUser()
         response_assert = "Não existe usuário com esse nome"
 
-        response = service.remove_user("renatão")
+        response = service.remove_user("ermeson")
 
         assert response_assert == response
 
@@ -85,7 +85,7 @@ class TestServiceUser:
         service = ServiceUser()
         response_assert = "Job inválido"
 
-        response = service.update_user("renatão", None)
+        response = service.update_user("camila", None)
 
         assert response_assert == response
 
@@ -119,16 +119,16 @@ class TestServiceUser:
         service = ServiceUser()
         response_assert = "Não existe usuário com esse nome"
 
-        response = service.get_user_by_name("renatão")
+        response = service.get_user_by_name("ermeson")
 
         assert response_assert == response
 
     def test_search_user(self):
         service = ServiceUser()
-        response_assert = "renatão"
+        response_assert = "carina"
 
-        service.add_user("renatão", "development")
-        response_user = service.search_user("renatão")
+        service.add_user("carina", "qa")
+        response_user = service.search_user("carina")
 
         assert response_assert == response_user.name
 
