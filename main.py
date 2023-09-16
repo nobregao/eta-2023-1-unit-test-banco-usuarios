@@ -18,4 +18,8 @@ print(service.store.bd)
 # print(service.store.bd)
 
 
-print(service.get_user_by_name("renatão"))
+print(service.store.bd[0].job)
+
+print(service.update_user("renatão", "jardineiro"))
+
+print(service.store.bd[0].job)

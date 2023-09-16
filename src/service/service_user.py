@@ -34,15 +34,21 @@ class ServiceUser:
         self.store.bd.remove(user)
         return "Usuário removido!"
 
-    def update_user(self, name, job): #atualizando job
+    def update_user(self, name, job):
         if type(name) != str:
             return "Nome inválido"
 
         if type(job) != str:
             return "Job inválido"
 
-        user = self.search_user(name)[0]
-        return user.job
+        listUser = self.search_user(name)
+        if len(listUser) == 0:
+            return "Não existe usuário com esse nome"
+
+        user = listUser[0]
+        user.job = job
+
+        return "Job de usuário atualizado"
 
     def get_user_by_name(self, name):
         if type(name) != str:
