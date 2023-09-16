@@ -48,3 +48,20 @@ class TestServiceUser:
         response = service.remove_user(name_user)
 
         assert response_assert == response
+
+    def test_remove_user_name_invalid(self):
+        service = ServiceUser()
+        response_assert = "Nome inválido"
+
+        response = service.remove_user(None)
+
+        assert response_assert == response
+
+    def test_remove_user_dont_exist(self):
+        service = ServiceUser()
+        response_assert = "Não existe usuário com esse nome"
+
+        response = service.remove_user("renatão")
+
+        assert response_assert == response
+
