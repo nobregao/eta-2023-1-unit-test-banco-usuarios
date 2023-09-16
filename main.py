@@ -13,6 +13,9 @@ print(service.add_user("renatão", "development"))
 
 print(service.store.bd)
 
-print(service.remove_user("renatão"))
+# print(service.remove_user("renatão"))
+#
+# print(service.store.bd)
 
-print(service.store.bd)
+
+print(service.get_user_by_name("renatão"))
